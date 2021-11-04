@@ -1,32 +1,23 @@
 package com.felinos.microservice.entities;
 
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 
 @Table(name = "orders")
 @Entity
 public class Order {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private Long order_id;
+    private int user_id;
     private int quantity;
+    private long order_id;
+    private String items;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "users_id")
-    @JsonManagedReference
-    private User users;
-
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "items_name")
-    private Item items;
-
-    public Order(Long order_id, int quantity, User users, Item items) {
+    public Order(Long order_id, int quantity, int user_id, String items) {
         this.order_id = order_id;
         this.quantity = quantity;
-        this.users = users;
+        this.user_id = user_id;
         this.items = items;
     }
     public Order(){
@@ -38,7 +29,7 @@ public class Order {
         return "Order{" +
                 "order_id=" + order_id +
                 ", quantity=" + quantity +
-                ", users=" + users +
+                ", user_id=" + user_id +
                 ", items=" + items +
                 '}';
     }
@@ -59,19 +50,17 @@ public class Order {
         this.quantity = quantity;
     }
 
-    public User getUsers() {
-        return users;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setUsers(User users) {
-        this.users = users;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
-    public Item getItems() {
-        return items;
-    }
+    public String getItems() {return items;}
 
-    public void setItems(Item items) {
+    public void setItems(String items) {
         this.items = items;
     }
 }

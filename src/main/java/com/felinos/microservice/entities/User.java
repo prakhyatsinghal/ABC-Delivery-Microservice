@@ -1,7 +1,5 @@
 package com.felinos.microservice.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 
 @Table(name ="User")
@@ -15,16 +13,11 @@ public class User {
     private String mobile_no ;
     private String email;
 
-    @OneToOne( mappedBy = "users")
-    @JsonBackReference
-    private Order order;
-
-    public User(long id, String name, String mobile_no, String email, Order order) {
+    public User(long id, String name, String mobile_no, String email) {
         this.id = id;
         this.name = name;
         this.mobile_no = mobile_no;
         this.email = email;
-        this.order = order;
     }
 
     @Override
@@ -34,7 +27,6 @@ public class User {
                 ", name='" + name + '\'' +
                 ", mobile_no='" + mobile_no + '\'' +
                 ", email='" + email + '\'' +
-                ", order=" + order +
                 '}';
     }
 
@@ -74,11 +66,4 @@ public class User {
         this.email = email;
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
 }

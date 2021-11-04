@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Entity
 public class Item {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private long item_id;
     private String name;

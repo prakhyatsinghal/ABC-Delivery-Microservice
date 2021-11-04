@@ -1,8 +1,8 @@
 package com.felinos.microservice.service;
 
 import com.felinos.microservice.entities.Item;
-import com.felinos.microservice.entities.User;
 import com.felinos.microservice.repository.ItemRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ItemService {
 
+    @Autowired
     private ItemRepository itemRepository;
 
     public Item findItemById(long uid) {
